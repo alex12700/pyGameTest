@@ -5,16 +5,27 @@ from Hand import Hand
 
 
 pygame.init()
-win = pygame.display.set_mode((500,500))
+sizeWin = (600,500)
+win = pygame.display.set_mode(sizeWin)
 
 pygame.display.set_caption("Cubes")
 
-
+# init of hand and display it
 deck = Hand()
 hand1 = Hand(deck)
 
+
+startY = sizeWin[1] - Card.heigth  * Card.padding
+stepX  = sizeWin[0]/10
+startX = stepX - Card.width/2   # Card.width * (Card.padding - 1)
+#Card.width  * Card.padding
+
+for card in hand1.cards:
+    card.move(win, startX, startY)
+    startX += stepX
+
 run = True
-# cardSelect = False
+cardSelect = False
 
 # add creating of deck and cards in start
 # cardTest = Card(win, 100, 100, (0,0,255), 1)
@@ -41,8 +52,9 @@ while run:
         # how to check all cards, now check 1 by 1 if
         if event.type == pygame.MOUSEBUTTONDOWN:
             if event.button == 1 and checkAreaCard(event.pos, cardTest):
+                # choose of card in hand (for if)
                 cardTest.choosen(win)
-                # cardSelect = True
+                cardSelect = cardTest.choose
 
                 pygame.draw.circle(win, (0,255,0), (event.pos), 20) #del
                 pygame.display.update() #del

@@ -15,4 +15,5 @@ class Hand():
             self.cards = [Card(suit = j, number = i) for i in range(10) for j in suitType]
         else:
             for _ in range(9):
-                self.cards.append(deck.cards.pop(randint(0,len(deck.cards))))
+                # print(len(deck.cards))
+                self.cards.append(deck.cards.pop(randint(0,len(deck.cards) - 1)))

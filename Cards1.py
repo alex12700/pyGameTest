@@ -53,10 +53,17 @@ class Card():
             pygame.draw.rect(window, self.suit,
             (self.x,self.y,self.width,self.heigth))
 
+    def move(self, window, x, y):
+        xT = self.x - self.width * (self.padding - 1)/2
+        yT = self.y - self.heigth * (self.padding - 1)/2
+        widthT = self.width * self.padding
+        heightT = self.heigth * self.padding
 
+        pygame.draw.rect(window, (0,0,0),
+        (xT, yT, widthT, heightT))
+
+        pygame.draw.rect(window, self.suit,
+        (x,y,self.width,self.heigth))
 
     def addToHand(self):
-        pass
-
-    def move(self):
         pass
