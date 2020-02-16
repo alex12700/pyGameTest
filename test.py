@@ -25,7 +25,7 @@ for card in hand1.cards:
     startX += stepX
 
 run = True
-cardSelect = False
+cardSelect = Card((0,0,0), 0)
 
 # add creating of deck and cards in start
 # cardTest = Card(win, 100, 100, (0,0,255), 1)
@@ -51,10 +51,16 @@ while run:
 
         # how to check all cards, now check 1 by 1 if
         if event.type == pygame.MOUSEBUTTONDOWN:
-            if event.button == 1 and checkAreaCard(event.pos, cardTest):
+            if event.button == 1:
                 # choose of card in hand (for if)
-                cardTest.choosen(win)
-                cardSelect = cardTest.choose
+                for card in hand1.cards:
+                    if checkAreaCard(event.pos, card):
+                        # Если выбрана другая карта и предыдущая активна, то выключаем ее
+                        if not card.choose and cardSelect.choose:
+                            cardSelect.choosen(win)
+                        card.choosen(win)
+                        cardSelect = card
+
 
                 pygame.draw.circle(win, (0,255,0), (event.pos), 20) #del
                 pygame.display.update() #del

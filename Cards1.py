@@ -59,6 +59,9 @@ class Card():
         widthT = self.width * self.padding
         heightT = self.heigth * self.padding
 
+        self.x = x
+        self.y = y
+
         pygame.draw.rect(window, (0,0,0),
         (xT, yT, widthT, heightT))
 
