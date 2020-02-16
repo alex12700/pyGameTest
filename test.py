@@ -1,6 +1,7 @@
 import pygame
 
 from Cards1 import Card
+from Hand import Hand
 
 
 pygame.init()
@@ -8,21 +9,15 @@ win = pygame.display.set_mode((500,500))
 
 pygame.display.set_caption("Cubes")
 
-x = 250
-y = 350
-width = 40
-heigth = 60
-speed = 5
+
+deck = Hand()
+hand1 = Hand(deck)
+
 run = True
-
-
-WHITE = (255, 255, 255)
-RED = (225, 0, 50)
-GREEN = (0, 225, 0)
-BLUE = (0, 0, 225)
+# cardSelect = False
 
 # add creating of deck and cards in start
-cardTest = Card(win,100,100,(0,0,255))
+# cardTest = Card(win, 100, 100, (0,0,255), 1)
 
 #check area of card for choose
 def checkAreaCard(pos, card): #pos = position
@@ -47,11 +42,10 @@ while run:
         if event.type == pygame.MOUSEBUTTONDOWN:
             if event.button == 1 and checkAreaCard(event.pos, cardTest):
                 cardTest.choosen(win)
-                # test = Card(win, 150, 150, (255, 255, 255))
+                # cardSelect = True
 
-                pygame.draw.circle(win, RED, (event.pos), 20)
-                pygame.display.update()
-                print(1)
+                pygame.draw.circle(win, (0,255,0), (event.pos), 20) #del
+                pygame.display.update() #del
             elif event.button == 3:
                 pygame.draw.circle(win, BLUE, event.pos, 20)
                 pygame.draw.rect(win, GREEN, (event.pos[0]-10, event.pos[1]-10, 20, 20))
@@ -59,20 +53,6 @@ while run:
             elif event.button == 2:
                 win.fill(WHITE)
                 pygame.display.update()
-
-    # keys = pygame.key.get_pressed()
-    # if keys[pygame.K_LEFT] and x > 5:
-    #     x -= speed
-    # if keys[pygame.K_RIGHT] and x < 500 - width - 5:
-    #     x += speed
-    # if keys[pygame.K_UP] and y > 5:
-    #     y -= speed
-    # if keys[pygame.K_DOWN] and y < 500 - heigth - 5:
-    #     y += speed
-
-    # win.fill((0,0,0))
-
-    # pygame.draw.rect(win, (0,0,255), (x, y, width, heigth))
 
     pygame.display.update()
 

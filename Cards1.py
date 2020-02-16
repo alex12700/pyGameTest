@@ -8,29 +8,31 @@ class Card():
     y = 0
     number = 0
     suit = (0, 0, 255)
-    padding = 1.2 # size to  multiply x2
+    padding = 1.2 # size to  multiply
 
     heigth = 60
     width = 40
 
     window = None
 
-    def __init__(self,window, x, y, suit):
+    # first init not for hand creation ?delete
+    def __init__(self,window, x, y, suit, number):
         self.x = x
         self.y = y
+        self.number = number
         self.window = window
         self.suit = suit
         pygame.draw.rect(window, suit,
-        (x, y,
-        self.width, self.heigth))
+        (x, y, self.width, self.heigth))
+
+    # WFT? overload doesn't work in python?
+    def __init__(self, suit, number):
+        self.suit = suit
+        self.number = number
 
     #borders of card
     def getBorders(self):
         return (self.x, self.y, self.x + self.width, self.y + self.heigth)
-
-    #left up border of card
-    # def getLUBorder(self):
-    #     return (self.x, self.y)
 
     #scale card if it choose
     def choosen(self, window):
@@ -39,19 +41,13 @@ class Card():
         widthT = self.width * self.padding
         heightT = self.heigth * self.padding
 
-        print(self.choose)
-
         pygame.draw.rect(window, (0,0,0),
         (xT, yT, widthT, heightT))
-        # print(self.choose)
 
         if not self.choose:
             self.choose = True
             pygame.draw.rect(window, self.suit,
             (xT, yT, widthT, heightT))
-            # self.y - self.heigth * (self.padding - 1)/2,
-            # self.width * self.padding,
-            # self.heigth * self.padding))
         else:
             self.choose = False
             pygame.draw.rect(window, self.suit,
@@ -59,8 +55,8 @@ class Card():
 
 
 
-    def addToHand():
+    def addToHand(self):
         pass
 
-    def move():
+    def move(self):
         pass
