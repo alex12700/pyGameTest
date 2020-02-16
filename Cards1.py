@@ -33,12 +33,31 @@ class Card():
     #     return (self.x, self.y)
 
     #scale card if it choose
-    def choose(self, window):
-        pygame.draw.rect(window, self.suit,
-        (self.x - self.width * (self.padding - 1)/2,
-        self.y - self.heigth * (self.padding - 1)/2,
-        self.width * self.padding,
-        self.heigth * self.padding))
+    def choosen(self, window):
+        xT = self.x - self.width * (self.padding - 1)/2
+        yT = self.y - self.heigth * (self.padding - 1)/2
+        widthT = self.width * self.padding
+        heightT = self.heigth * self.padding
+
+        print(self.choose)
+
+        pygame.draw.rect(window, (0,0,0),
+        (xT, yT, widthT, heightT))
+        # print(self.choose)
+
+        if not self.choose:
+            self.choose = True
+            pygame.draw.rect(window, self.suit,
+            (xT, yT, widthT, heightT))
+            # self.y - self.heigth * (self.padding - 1)/2,
+            # self.width * self.padding,
+            # self.heigth * self.padding))
+        else:
+            self.choose = False
+            pygame.draw.rect(window, self.suit,
+            (self.x,self.y,self.width,self.heigth))
+
+
 
     def addToHand():
         pass

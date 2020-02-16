@@ -46,7 +46,7 @@ while run:
         # how to check all cards, now check 1 by 1 if
         if event.type == pygame.MOUSEBUTTONDOWN:
             if event.button == 1 and checkAreaCard(event.pos, cardTest):
-                cardTest.choose(win)
+                cardTest.choosen(win)
                 # test = Card(win, 150, 150, (255, 255, 255))
 
                 pygame.draw.circle(win, RED, (event.pos), 20)
